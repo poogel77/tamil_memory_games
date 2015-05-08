@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id        = "com.omtamil.demoapp"
+	id        = "com.yahoo.tamilmemory"
 	versionCode="1"
 	version   = "1.0">
-<name>OMTAMIL DEMO APP</name>
+<name>TAMIL MEMORY GAME</name>
 <description>
-A Demo App for Mobile Development Workshop</description>
-<author href="omtamil.com" 
-email="muhelen@omtamil.com">
-MUHELEN MURUGAN
+TAMIL MEMORY GAME</description>
+<author href="poogel77.com" 
+email="poogel77@yahoo.com">
+Poogelenthiran
 </author>
 	
 	<!-- Define app icon MAIN ROOT Platform. -->
