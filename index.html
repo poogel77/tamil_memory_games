@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>TAMIL MEMORY GAME</title>
+	<link rel="stylesheet"  href="css/jquery.mobile.min.css">
+	<style>
+		#homeBanner {
+			width: 100%;
+		}
+		.center {
+			text-align: center;
+			margin-left: auto;
+			margin-right:auto;
+		}
+		.banner {
+			display:block;
+			width: 100%;
+		}
+		#qrcode {
+			display:block;	
+			margin-left: auto;
+			margin-right:auto;
+		}
+		#map2 {
+			margin-left: auto;
+			margin-right:auto;
+			width: 320px;
+			height: 320px;  
+		}
+			div#memory_board{
+			background:#00FF00;
+			border:#999 1px solid;
+			width:765px;
+			height:500px;
+			padding:24px;
+			margin:0px auto;
+		}
+		div#memory_board > div{
+			background: url(tile_bg.jpg) no-repeat;
+			border:#000 1px solid;
+			width:65px;
+			height:65px;
+			float:left;
+			margin:10px;
+			padding:20px;
+			font-size:40px;
+			color:#0000CD;
+			cursor:pointer;
+			text-align:center;
+		}	
+	</style>
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<link rel="stylesheet" href="themes/test.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/jquery.js"></script>
+	
+	<script>
+	// Scripted By Adam Khoury in connection with the following video tutorial:
+	// http://www.youtube.com/watch?v=c_ohDPWmsM0
+	var memory_array = ['அ','அ','ஆ','ஆ','இ','இ','ஈ','ஈ','உ','உ','ஊ','ஊ','எ','எ','ஏ','ஏ','ஐ','ஐ','ஒ','ஒ','ஓ','ஓ','ஔ','ஔ'];
+	var memory_values = [];
+	var memory_tile_ids = [];
+	var tiles_flipped = 0;
+	Array.prototype.memory_tile_shuffle = function(){
+		var i = this.length, j, temp;
+		while(--i > 0){
+			j = Math.floor(Math.random() * (i+1));
+			temp = this[j];
+			this[j] = this[i];
+			this[i] = temp;
+		}
+	}
+	function newBoard(){
+		tiles_flipped = 0;
+		var output = '';
+		memory_array.memory_tile_shuffle();
+		for(var i = 0; i < memory_array.length; i++){
+			output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+		}
+		document.getElementById('memory_board').innerHTML = output;
+	}
+	function memoryFlipTile(tile,val){
+		if(tile.innerHTML == "" && memory_values.length < 2){
+			tile.style.background = '#FFFF00';
+			tile.innerHTML = val;
+			if(memory_values.length == 0){
+				memory_values.push(val);
+				memory_tile_ids.push(tile.id);
+			} else if(memory_values.length == 1){
+				memory_values.push(val);
+				memory_tile_ids.push(tile.id);
+				if(memory_values[0] == memory_values[1]){
+					tiles_flipped += 2;
+					// Clear both arrays
+					memory_values = [];
+					memory_tile_ids = [];
+					// Check to see if the whole board is cleared
+					if(tiles_flipped == memory_array.length){
+						alert("Board cleared... generating new board");
+						document.getElementById('memory_board').innerHTML = "";
+						newBoard();
+					}
+				} else {
+					function flip2Back(){
+						// Flip the 2 tiles back over
+						var tile_1 = document.getElementById(memory_tile_ids[0]);
+						var tile_2 = document.getElementById(memory_tile_ids[1]);
+						tile_1.style.background = 'url(tile_bg.jpg) no-repeat';
+						tile_1.innerHTML = "";
+						tile_2.style.background = 'url(tile_bg.jpg) no-repeat';
+						tile_2.innerHTML = "";
+						// Clear both arrays
+						memory_values = [];
+						memory_tile_ids = [];
+					}
+					setTimeout(flip2Back, 700);
+				}
+			}
+		}
+	}
+	</script>
+
+</head>
+	
+<body>
+<div id="homeScreen" data-role="page">
+	<img src="imgs/banner.png" class="banner" />
+	<div data-role="content">
+		<ul data-role="listview"  data-filter="true" data-inset="true" class="ui-nodisc-icon ui-alt-icon">
+	
+				<li><a href="#list1"><img src="imgs/924520721_thumb.png">
+				<h2>தொடக்கம்</h2>
+				<p>இதனை விளையாட இங்கே சுட்டவும்</p></a>
+			</li>
+		</ul>
+
+	
+		<div class="ui-grid-a center">
+    		<div class="ui-block-a">
+				<a href="#aboutScreen" class="ui-btn ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline ui-nodisc-icon ui-alt-icon">Info</a>
+			</div>
+    		<div class="ui-block-b">
+				<a href="#mapScreen" class="ui-btn ui-corner-all ui-icon-location ui-btn-icon-notext ui-btn-inline ui-nodisc-icon ui-alt-icon">Map</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="list1" data-role="page">
+	<header data-role="header" data-position="fixed" data-id="appHeader">
+		<h1>விளையாட்டு</h1>
+		<a href="#homeScreen" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back</a>
+	</header>
+	<div data-role="content">
+	<div id="memory_board"></div>
+<script>newBoard();</script>
+	</div>
+</div>
+
+	
+<div id="mapScreen" data-role="page">
+	<header data-role="header" data-position="fixed" data-id="appHeader">
+		<h1>OMTAMIL</h1>
+		<a href="#homeScreen" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back</a>
+	</header>
+	<div data-role="content">
+		<h2 class="center">OMTAMIL DOTCOM</h2>
+		<p class="center">No. 16, Jln SL9/9A, Palm Walk, Bandar Sg Long ,<br>43200 Selangor MALAYSIA</p>
+
+		<p class="center"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d996.0391590093255!2d101.80669599999999!3d3.0527080000000093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc3367e9ed6c9f%3A0x38d1b5e827f2b4cf!2sJalan+SL+9%2F9a%2C+Bandar+Sungai+Long%2C+43000+Kajang%2C+Selangor!5e0!3m2!1sta!2smy!4v1412396778230" width="100%" height="400" frameborder="0" style="border:0"></iframe></p>
+
+	</div>
+</div>
+
+
+
+
+<div id="aboutScreen" data-role="page">
+	<header data-role="header" data-position="fixed" data-id="appHeader">
+		<h1>OMTAMIL</h1>
+		<a href="#homeScreen" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back</a>
+	</header>
+	<div data-role="content">
+		<h2 class="center">OMTAMIL DOTCOM (002135971-U)</h2>
+		
+		<img class="center banner" src="imgs/omtamil-dotcom.png" />
+		OMTAMIL DOTCOM (002135971-U), IS A REGISTERED ENTERPRISE IN MALAYSIA SINCE 2012. WE OFFER ONLINE-MOBILE TRAINING AND SERVICES (E-LEARNING, MOBILE APPS, WEB TOOLS, SOCIAL MEDIA, MULTIMEDIA, E-COMMERCE) TO SCHOOLS, INSTITUTES, COLLEGES, UNIVERSITIES, EDUCATORS, BUSINESSES, ORGANIZATIONS, AND INDIVIDUALS IN BOTH TAMIL AND ENGLISH.</p>
+	</div>
+</div>
+
+
+	<!--
+	Admission
+	Directions
+	Parking
+	Hours
+	Volunteer
+	-->
+</body>
+</html>
