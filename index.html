@@ -101,7 +101,7 @@
 					memory_tile_ids = [];
 					// Check to see if the whole board is cleared
 					if(tiles_flipped == memory_array.length){
-						alert("Board cleared... generating new board");
+						alert("மீண்டும் விளையாட");
 						document.getElementById('memory_board').innerHTML = "";
 						newBoard();
 					}
@@ -128,26 +128,28 @@
 </head>
 	
 <body>
-<div id="homeScreen" data-role="page">
-	<img src="imgs/banner.png" class="banner" />
-	<div data-role="content">
-		<ul data-role="listview"  data-filter="true" data-inset="true" class="ui-nodisc-icon ui-alt-icon">
+
+<div id="mainPage" data-role="page">
+<img src="imgs/banner.png" width="100%">
+<div data-role="header"> 
+
+<h1>விளையாட்டு</h1>
+
+</div>
 	
-				<li><a href="#list1"><img src="imgs/924520721_thumb.png">
-				<h2>தொடக்கம்</h2>
-				<p>இதனை விளையாட இங்கே சுட்டவும்</p></a>
+
+	<div data-role="content">
+		<ul data-role="listview"  data-inset="true" class="ui-nodisc-icon ui-alt-icon">
+	
+				<li><a href="#list1">
+				<center><h2>தொடக்கம்</h2>
+				<p>Please rotate your mobile device screen for better viewing</p></center>
+				</a>
 			</li>
 		</ul>
 
 	
-		<div class="ui-grid-a center">
-    		<div class="ui-block-a">
-				<a href="#aboutScreen" class="ui-btn ui-corner-all ui-icon-info ui-btn-icon-notext ui-btn-inline ui-nodisc-icon ui-alt-icon">Info</a>
-			</div>
-    		<div class="ui-block-b">
-				<a href="#mapScreen" class="ui-btn ui-corner-all ui-icon-location ui-btn-icon-notext ui-btn-inline ui-nodisc-icon ui-alt-icon">Map</a>
-			</div>
-		</div>
+		
 	</div>
 </div>
 
@@ -156,7 +158,7 @@
 <div id="list1" data-role="page">
 	<header data-role="header" data-position="fixed" data-id="appHeader">
 		<h1>விளையாட்டு</h1>
-		<a href="#homeScreen" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back</a>
+		<a href="#mainPage" class="ui-btn ui-icon-back ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back</a>
 	</header>
 	<div data-role="content">
 	<div id="memory_board"></div>
@@ -164,36 +166,6 @@
 	</div>
 </div>
 
-	
-<div id="mapScreen" data-role="page">
-	<header data-role="header" data-position="fixed" data-id="appHeader">
-		<h1>OMTAMIL</h1>
-		<a href="#homeScreen" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back</a>
-	</header>
-	<div data-role="content">
-		<h2 class="center">OMTAMIL DOTCOM</h2>
-		<p class="center">No. 16, Jln SL9/9A, Palm Walk, Bandar Sg Long ,<br>43200 Selangor MALAYSIA</p>
-
-		<p class="center"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d996.0391590093255!2d101.80669599999999!3d3.0527080000000093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc3367e9ed6c9f%3A0x38d1b5e827f2b4cf!2sJalan+SL+9%2F9a%2C+Bandar+Sungai+Long%2C+43000+Kajang%2C+Selangor!5e0!3m2!1sta!2smy!4v1412396778230" width="100%" height="400" frameborder="0" style="border:0"></iframe></p>
-
-	</div>
-</div>
-
-
-
-
-<div id="aboutScreen" data-role="page">
-	<header data-role="header" data-position="fixed" data-id="appHeader">
-		<h1>OMTAMIL</h1>
-		<a href="#homeScreen" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back</a>
-	</header>
-	<div data-role="content">
-		<h2 class="center">OMTAMIL DOTCOM (002135971-U)</h2>
-		
-		<img class="center banner" src="imgs/omtamil-dotcom.png" />
-		OMTAMIL DOTCOM (002135971-U), IS A REGISTERED ENTERPRISE IN MALAYSIA SINCE 2012. WE OFFER ONLINE-MOBILE TRAINING AND SERVICES (E-LEARNING, MOBILE APPS, WEB TOOLS, SOCIAL MEDIA, MULTIMEDIA, E-COMMERCE) TO SCHOOLS, INSTITUTES, COLLEGES, UNIVERSITIES, EDUCATORS, BUSINESSES, ORGANIZATIONS, AND INDIVIDUALS IN BOTH TAMIL AND ENGLISH.</p>
-	</div>
-</div>
 
 
 	<!--
