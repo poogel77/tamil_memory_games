@@ -2,8 +2,8 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
 	id        = "com.yahoo.tamilmemory"
-	versionCode="1"
-	version   = "1.0">
+	versionCode="2"
+	version   = "1.0.1">
 <name>TAMIL MEMORY GAME</name>
 <description>
 TAMIL MEMORY GAME</description>
@@ -30,7 +30,7 @@ Poogelenthiran
     <preference name="permissions"  value="none"/>
 
       <!-- Customize your app and platform with the preference element. -->
-    <preference name="phonegap-version"           value="3.5.0" />          <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version"           value="cli-5.2.0" />          <!-- all: current version of PhoneGap -->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
@@ -51,7 +51,7 @@ Poogelenthiran
 <!-- Plugins -->
 
     <!-- Core plugins -->
-    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <plugin name="org.apache.cordova.splashscreen" spec="1.0.0" source="pgb" />
 
 
     <!--
@@ -81,6 +81,8 @@ Poogelenthiran
 <gap:splash src="res/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
 <gap:splash src="res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
 	
-	
+	<preference name="android-build-tool" value="gradle" /> 
+    <gap:plugin name="cordova-plugin-admobpro" source="npm" />
+    <framework src="com.google.android.gms:play-services-ads:+" />
 
 </widget>
